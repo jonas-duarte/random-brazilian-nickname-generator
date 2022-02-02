@@ -1,6 +1,6 @@
-const express = require("express")
+const app = require('express')();
 
-const Rbng = require("./rbng")
+const Rbng = require("../domain/rbng")
 
 function randomGenerate() {
     let rbng = new Rbng(new Date().getTime())
@@ -10,13 +10,8 @@ function randomGenerate() {
     return rbng
 }
 
-const app = express()
-const port = 3000
-
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send(randomGenerate())
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+module.exports = app
